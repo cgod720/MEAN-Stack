@@ -1,0 +1,24 @@
+{
+  "name": "mean-stack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgod720/MEAN-Stack.git"
+  },
+  "author": "Los,Joe,Chris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgod720/MEAN-Stack/issues"
+  },
+  "homepage": "https://github.com/cgod720/MEAN-Stack#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10"
+  }
+}
