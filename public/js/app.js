@@ -23,8 +23,8 @@ app.controller('MainController', ['$http', function($http){
       method: "POST",
       url: '/sessions',
       data: {
-        username: this.userName,
-        password: this.password
+        username: this.user,
+        password: this.pass
       }
     }).then((response) => {
         this.createdUserName = response.config.data.username;
