@@ -8,7 +8,7 @@ const session = require('express-session');
 app.use(session({
   secret: "MEANSTACKRULES",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }))
 
 

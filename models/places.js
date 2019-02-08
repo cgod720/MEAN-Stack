@@ -8,3 +8,5 @@ const placesSchema = new mongoose.Schema({
     lng: Number
   }
 });
+
+const Place = mongoose.model('Place', placesSchema);
