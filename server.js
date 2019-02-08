@@ -4,8 +4,6 @@ const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
 
-
-
 //Middleware
 app.use(session({
   secret: "MEANSTACKRULES",
