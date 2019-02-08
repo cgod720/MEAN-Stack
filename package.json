@@ -1,6 +1,9 @@
 {
   "name": "mean-stack",
   "version": "1.0.0",
+  "engines": {
+    "node": "11.8.0"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -19,6 +22,7 @@
   "homepage": "https://github.com/cgod720/MEAN-Stack#readme",
   "dependencies": {
     "bcrypt": "^3.0.4",
+    "dot-env": "0.0.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.10"
