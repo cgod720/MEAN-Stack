@@ -5,8 +5,16 @@
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js" charset="utf-8"></script>
     <script src="/js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
-    <h1>{{ctrl.test}}</h1>
+    <h1>MEAN APP</h1>
+
+    <h1 ng-if="ctrl.createdUserName">Welcome, {{ctrl.createdUserName}}</h1>
+    <form ng-submit="ctrl.createUser()">
+      <input type="text" ng-model="ctrl.userName" placeholder="New User"/>
+      <input type="password" ng-model="ctrl.password" placeholder="Password"/><br/>
+      <input type="submit" value="Create User">
+    </form>
   </body>
 </html>

@@ -2,13 +2,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const session = require('express-session');
+
 
 
 //Middleware
 app.use(express.json());
 app.use(express.static('public'));
 
-
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
 
 
 app.listen(3000, () => {
