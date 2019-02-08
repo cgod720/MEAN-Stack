@@ -11,8 +11,23 @@ app.controller('MainController', ['$http', function($http){
         password: this.password
       }
     }).then((response) => {
+        // this.createdUserName = response.config.data.username;
+        console.log(response);
+    }, (err) => {
+        console.log(err);
+    })
+  }
+
+  this.logIn = () => {
+    $http({
+      method: "POST",
+      url: '/sessions',
+      data: {
+        username: this.userName,
+        password: this.password
+      }
+    }).then((response) => {
         this.createdUserName = response.config.data.username;
-        console.log(this.createdUserName);
         console.log(response);
     }, (err) => {
         console.log(err);

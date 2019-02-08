@@ -7,11 +7,21 @@ const session = require('express-session');
 
 
 //Middleware
+app.use(session({
+  secret: "MEANSTACKRULES",
+  resave: false,
+  saveUnitialized: false
+}))
+
+
 app.use(express.json());
 app.use(express.static('public'));
 
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
+
+const sessionsController = require('./controllers/users.js');
+app.use('/sessions', sessionsController);
 
 
 app.listen(3000, () => {
