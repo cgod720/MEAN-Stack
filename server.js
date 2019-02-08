@@ -28,7 +28,7 @@ app.listen(3000, () => {
   console.log('Ready..');
 })
 
-mongoose.connect('mongodb://localhost:27017/ideas', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/routr', {useNewUrlParser: true});
 mongoose.connection.once('open', () => {
   console.log("Mongo Connected");
 })
