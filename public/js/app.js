@@ -4,7 +4,7 @@ app.controller('MainController', ['$http', function($http){
   this.includePath  = '../partials/landing.html';
 
   this.changeInclude = (path) => {
-    this.includePath = './partials/' + path + '.html';
+    this.includePath = 'partials/' + path + '.html';
   }
 
 

@@ -9,13 +9,12 @@
   </head>
   <body ng-controller="MainController as ctrl">
     <div class="container">
-      <!-- <div class="column-left"> -->
-      <span>ROUTR<span>
+      <div class="column-left">
+      <h1>ROUTR</h1>
       <h1 ng-if="ctrl.createdUserName">Welcome, {{ctrl.createdUserName}}</h1>
 
       <div class="wrapper">
-        <div ng-include="'partials/landing.html'">
-
+        <div ng-include="ctrl.includePath">
         </div>
       </div>
 
@@ -32,11 +31,11 @@
           <input type="submit" value="Log In">
         </form> -->
 
-      <!-- </div> -->
+      </div>
     </div>
-        <!-- <iframe
+        <iframe
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A
               &q=Empire+State+Building" allowfullscreen>
-        </iframe> -->
+        </iframe>
   </body>
 </html>
