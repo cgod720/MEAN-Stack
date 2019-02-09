@@ -4,8 +4,6 @@ const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
 
-
-
 //Middleware
 app.use(session({
   secret: "MEANSTACKRULES",
@@ -23,6 +21,8 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions.js');
 app.use('/sessions', sessionsController);
 
+const placesController = require('./controllers/places.js');
+app.use('/places', placesController);
 
 app.listen(3000, () => {
   console.log('Ready..');
