@@ -8,14 +8,14 @@ const Places = require('../models/places.js');
 router.post('/', (req, res) => {
   Places.create(req.body, (err, createdPlace) => {
     res.json(createdPlace);
-    // res.send('post route working');
+
   });
 });
 //get route
 router.get('/', (req, res) => {
   Places.find({}, (err, foundPlace) => {
     res.json(foundPlace);
-    // res.send('get route working');
+  
   });
 });
 //update route

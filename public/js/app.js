@@ -11,7 +11,6 @@ app.controller('MainController', ['$http', function($http){
         password: this.password
       }
     }).then((response) => {
-        // this.createdUserName = response.data.username;
         console.log(response);
     }, (err) => {
         console.log(err);
@@ -33,4 +32,40 @@ app.controller('MainController', ['$http', function($http){
         console.log(err);
     })
   }
+}]);
+
+app.controller('PlacesController', ['$http', function($http) {
+  const controller = this;
+
+  this.createPlace = () => {
+    $http({
+    method: 'POST',
+    url: '/places',
+      data: {
+        name: this.name,
+        location: this.location,
+        createdBy: this.createdBy
+      }
+  }).then(function(response) {
+    console.log(response);
+  }, function(error) {
+    console.log(err);
+  });
+ }
+
+ this.pullLocation = (data) => {
+   $http({
+     method: 'GET',
+     url: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=Empire+State+Building'
+       // data: {
+       //   Title: this.Title,
+       //   Year: this.Year,
+       //   Released: this.Released
+       // }
+   }).then(function(response) {
+     console.log(response);
+   }, function(err) {
+     console.log(err);
+   });
+ }
 }]);
