@@ -34,7 +34,3 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 }])
-
-app.controller('PlacesController', ['$http', function($http) {
-
-}]);
