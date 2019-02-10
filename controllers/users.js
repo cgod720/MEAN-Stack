@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
     if (foundUser) {
       // Send error message back to client
       res.status(409).json({
-        stats: 409,
+        status: 409,
         message: "Provided username is already in use"
       })
     } else {
