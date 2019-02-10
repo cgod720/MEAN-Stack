@@ -10,7 +10,7 @@
   <body ng-controller="MainController as ctrl">
     <div class="container">
       <div class="column-left">
-        <button ng-click="ctrl.logOut()">Log Out</button>
+        <button ng-if="ctrl.currentUser" ng-click="ctrl.logOut()">Log Out</button>
       <h1>ROUTR</h1>
       <h1 ng-if="ctrl.currentUser">Welcome, {{ctrl.currentUser.username}}</h1>
 
