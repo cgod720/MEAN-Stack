@@ -59,6 +59,10 @@ app.controller('PlacesController', ['$http', function($http) {
   });
  }
 
+this.defLocale = () => {
+  return 'Empire State Building';
+}
+
  this.pullLocation = (data) => {
    $http({
      method: 'GET',
