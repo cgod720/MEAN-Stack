@@ -8,20 +8,32 @@
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
-    <h1>ROUTR</h1>
+    <nav>
+      <span>Routr</span>
 
-    <h1 ng-if="ctrl.createdUserName">Welcome, {{ctrl.createdUserName}}</h1>
-    <form ng-submit="ctrl.createUser()">
-      <input type="text" ng-model="ctrl.userName" placeholder="New User"/>
-      <input type="password" ng-model="ctrl.password" placeholder="Password"/><br/>
-      <input type="submit" value="Create User">
-    </form>
+      <!-- if user is logged in -->
+      <button
+        ng-if="ctrl.currentUser"
+        ng-click="ctrl.logOut()"
+      >
+        Log Out
+      </button>
 
-    <form ng-submit="ctrl.logIn()">
-      <input type="text" ng-model="ctrl.user" placeholder="User Name"/>
-      <input type="password" ng-model="ctrl.pass" placeholder="Password"/><br/>
-      <input type="submit" value="Log In">
-    </form>
+      <!-- if user is logged out -->
+      <button
+        ng-if="ctrl.currentUser === false"
+        ng-click="ctrl.changeInclude('login')"
+      >
+        Log In
+      </button>
+      <button
+        ng-if="ctrl.currentUser === false"
+        ng-click="ctrl.changeInclude('signup')"
+      >
+        Sign Up
+      </button>
+    </nav>
 
+    <div ng-include="ctrl.includePath"></div>
   </body>
 </html>
