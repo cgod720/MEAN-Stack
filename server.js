@@ -22,14 +22,14 @@ app.use(session({
 app.use(express.json());
 app.use(express.static('public'));
 
-// const userController = require('./controllers/users.js');
-// app.use('/users', userController);
-//
-// const sessionsController = require('./controllers/sessions.js');
-// app.use('/sessions', sessionsController);
-//
-// const placesController = require('./controllers/places.js');
-// app.use('/places', placesController);
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
+
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
+
+const placesController = require('./controllers/places.js');
+app.use('/places', placesController);
 
 app.listen(PORT, () => {
   console.log('Ready..');
