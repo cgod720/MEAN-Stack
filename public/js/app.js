@@ -1,7 +1,7 @@
 const app = angular.module('TheApp', []);
 
 app.controller('MainController', ['$http', function($http){
-  this.includePath  = '../partials/landing.html';
+  this.includePath  = 'partials/landing.html';
 
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html';
@@ -32,12 +32,37 @@ app.controller('MainController', ['$http', function($http){
         password: this.pass
       }
     }).then((response) => {
-        this.createdUserName = response.data.username;
-        console.log(response);
+        this.currentUser = response.data;
     }, (err) => {
         console.log(err);
     })
   }
+
+  this.logOut = () => {
+    $http({
+      method: 'DELETE',
+      url: '/sessions'
+    }).then((response) => {
+      this.currentUser = false;
+    },
+    (error) => {
+      console.error(error);
+    })
+  }
+
+  this.getCurrentUser = () => {
+    $http({
+      method: 'GET',
+      url: 'sessions/currentUser'
+    }).then((response) => {
+      this.currentUser = response.data;
+    },
+    (error) => {
+      console.error(error);
+    })
+  }
+
+  this.getCurrentUser();
 }]);
 
 app.controller('PlacesController', ['$http', function($http) {
