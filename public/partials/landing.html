@@ -1,5 +1,6 @@
 <div>
   <p>Where would you like to go?</p>
+  <p ng-if="ctrl.errorMessage">{{ ctrl.errorMessage }}</p>
   <input type="text" placeholder="Destination" ng-model="ctrl.searchTerm">
-  <button ng-click="ctrl.changeInclude('map')">Go</button>
+  <button ng-click="ctrl.onLandingSearch()">Go</button>
 </div>
