@@ -1,4 +1,5 @@
 <div>
+  <p ng-if="ctrl.errorMessage">{{ ctrl.errorMessage }}</p>
   <form ng-submit="ctrl.createUser()">
     <input type="text" ng-model="ctrl.signUpForm.username" placeholder="New User"/>
     <input type="password" ng-model="ctrl.signUpForm.password" placeholder="Password"/><br/>

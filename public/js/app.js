@@ -4,44 +4,62 @@ app.controller('MainController', ['$http', function($http){
   this.includePath  = 'partials/landing.html';
   this.logInForm = {};
   this.signUpForm = {};
+  this.errorMessage = '';
 
   this.changeInclude = (path) => {
+    this.errorMessage = '';
     this.includePath = 'partials/' + path + '.html';
   }
 
 
   this.createUser = () => {
-    $http({
-      method: "POST",
-      url: '/users',
-      data: {
-        username: this.signUpForm.username,
-        password: this.signUpForm.password
-      }
-    }).then((response) => {
-        this.currentUser = response.data;
-        this.includePath  = 'partials/map.html';
-        this.signUpForm = {};
-    }, (err) => {
-        console.log(err);
-    })
+    this.errorMessage = '';
+    if (!this.signUpForm.username) {
+      this.errorMessage = 'Must provide username';
+    } else if (!this.signUpForm.password) {
+      this.errorMessage = 'Must provide password';
+    } else {
+      $http({
+        method: "POST",
+        url: '/users',
+        data: {
+          username: this.signUpForm.username,
+          password: this.signUpForm.password
+        }
+      }).then((response) => {
+          this.currentUser = response.data;
+          this.includePath  = 'partials/map.html';
+          this.signUpForm = {};
+      }, (error) => {
+          console.log(error);
+          this.errorMessage = error.data.message;
+      })
+    }
   }
 
   this.logIn = () => {
-    $http({
-      method: "POST",
-      url: '/sessions',
-      data: {
-        username: this.logInForm.username,
-        password: this.logInForm.password
-      }
-    }).then((response) => {
-        this.currentUser = response.data;
-        this.includePath  = 'partials/map.html';
-        this.logInForm = {};
-    }, (err) => {
-        console.log(err);
-    })
+    this.errorMessage = '';
+    if (!this.logInForm.username) {
+      this.errorMessage = 'Must provide username';
+    } else if (!this.logInForm.password) {
+      this.errorMessage = 'Must provide password';
+    } else {
+      $http({
+        method: "POST",
+        url: '/sessions',
+        data: {
+          username: this.logInForm.username,
+          password: this.logInForm.password
+        }
+      }).then((response) => {
+          this.currentUser = response.data;
+          this.includePath  = 'partials/map.html';
+          this.logInForm = {};
+      }, (error) => {
+          console.log(error);
+          this.errorMessage = error.data.message;
+      })
+    }
   }
 
   this.logOut = () => {
