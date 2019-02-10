@@ -121,7 +121,19 @@ app.controller('MainController', ['$http', '$sce', function($http, $sce){
   }
 
   this.getMapURL = () => {
-    return $sce.trustAsResourceUrl(`https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&origin=${this.currentLocation}&destination=Telemark+Norway`);
+    // If user's location is no known
+    if (!this.currentLocation) {
+      // return map of eiffel tower
+      return 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=Eiffel+Tower,Paris+France'
+    } else if (!this.currentDestination) {
+      // if there is not set destination
+      // return map of user's location
+      return $sce.trustAsResourceUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=${this.currentLocation}`);
+    } else {
+      // if user's location is available and a destination is set
+      // display route
+      return $sce.trustAsResourceUrl(`https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&origin=${this.currentLocation}&destination=${this.currentDestination}`);
+    }
   }
 
   this.getCurrentUser = () => {
