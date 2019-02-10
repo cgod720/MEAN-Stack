@@ -7,18 +7,26 @@ app.controller('MainController', ['$http', function($http){
   this.errorMessage = '';
 
   this.changeInclude = (path) => {
+    // clear errorMessage whenever navigating to a different page
     this.errorMessage = '';
     this.includePath = 'partials/' + path + '.html';
   }
 
 
   this.createUser = () => {
+    // Clear errorMessage
     this.errorMessage = '';
+
+    // If there is no provided username
     if (!this.signUpForm.username) {
+      // Display an error message
       this.errorMessage = 'Must provide username';
     } else if (!this.signUpForm.password) {
+      // If there is no provided password
+      // Display an error message
       this.errorMessage = 'Must provide password';
     } else {
+      // Make request to create user
       $http({
         method: "POST",
         url: '/users',
@@ -27,23 +35,35 @@ app.controller('MainController', ['$http', function($http){
           password: this.signUpForm.password
         }
       }).then((response) => {
+          // set current user to user returned from db
           this.currentUser = response.data;
+          // navigate to the map view
           this.includePath  = 'partials/map.html';
+          // clear signUpForm fields
           this.signUpForm = {};
       }, (error) => {
+          // request returned an error
           console.log(error);
+          // set errorMessage to message returned from request
           this.errorMessage = error.data.message;
       })
     }
   }
 
   this.logIn = () => {
+    // Clear errorMessage
     this.errorMessage = '';
+
+    // If there is no provided username
     if (!this.logInForm.username) {
+      // Display an error message
       this.errorMessage = 'Must provide username';
     } else if (!this.logInForm.password) {
+      // If there is no provided password
+      // Display an error message
       this.errorMessage = 'Must provide password';
     } else {
+      // Make request to log user in
       $http({
         method: "POST",
         url: '/sessions',
@@ -52,22 +72,30 @@ app.controller('MainController', ['$http', function($http){
           password: this.logInForm.password
         }
       }).then((response) => {
+          // set current user to user returned from db
           this.currentUser = response.data;
+          // navigate to the map view
           this.includePath  = 'partials/map.html';
+          // clear logInForm fields
           this.logInForm = {};
       }, (error) => {
+          // request returned an error
           console.log(error);
+          // set errorMessage to message returned from request
           this.errorMessage = error.data.message;
       })
     }
   }
 
   this.logOut = () => {
+    // Make request to log out current user
     $http({
       method: 'DELETE',
       url: '/sessions'
     }).then((response) => {
+      // set currentUser to false
       this.currentUser = false;
+      // navigate to landing view
       this.includePath  = 'partials/landing.html';
     },
     (error) => {
@@ -76,14 +104,21 @@ app.controller('MainController', ['$http', function($http){
   }
 
   this.getCurrentUser = () => {
+    // Make request to get current user
     $http({
       method: 'GET',
       url: 'sessions/currentUser'
     }).then((response) => {
+      // if a user is logged in, currentUser will equal user object
+      // if a user is not logged in, currentUser will equal false
       this.currentUser = response.data;
+
+      // If there is a logged in user
       if (response.data) {
+        // navigate to map view
         this.includePath  = 'partials/map.html';
       } else {
+        // navigate to landing page
         this.includePath  = 'partials/landing.html';
       }
     },
@@ -92,6 +127,7 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  // Call getCurrentUser as soon as page loads
   this.getCurrentUser();
 }]);
 
