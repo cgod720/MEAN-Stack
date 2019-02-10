@@ -1,6 +1,8 @@
-<form ng-submit="ctrl.createUser()">
-  <input type="text" ng-model="ctrl.userName" placeholder="New User"/>
-  <input type="password" ng-model="ctrl.password" placeholder="Password"/><br/>
-  <input type="submit" value="Create User">
-</form>
-  <button ng-click="ctrl.changeInclude('login')">Log In</button>
+<div>
+  <p ng-if="ctrl.errorMessage">{{ ctrl.errorMessage }}</p>
+  <form ng-submit="ctrl.createUser()">
+    <input type="text" ng-model="ctrl.signUpForm.username" placeholder="New User"/>
+    <input type="password" ng-model="ctrl.signUpForm.password" placeholder="Password"/><br/>
+    <input type="submit" value="Create User">
+  </form>
+</div>
