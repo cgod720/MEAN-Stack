@@ -30,4 +30,11 @@ router.post('/', (req, res) => {
   })
 })
 
+router.get('/currentUser', (req, res) => {
+  // if there is a currentUser,
+  // send the currentUser to the client
+  // if there is no currentUser, send false
+  res.status(200).json(req.session.currentUser || false);
+})
+
 module.exports = router;
