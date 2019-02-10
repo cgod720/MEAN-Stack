@@ -38,14 +38,26 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
-  this.getCurrentUser = function() {
+  this.logOut = () => {
+    $http({
+      method: 'DELETE',
+      url: '/sessions'
+    }).then((response) => {
+      this.currentUser = false;
+    },
+    (error) => {
+      console.error(error);
+    })
+  }
+
+  this.getCurrentUser = () => {
     $http({
       method: 'GET',
       url: 'sessions/currentUser'
-    }).then(function(response) {
+    }).then((response) => {
       this.currentUser = response.data;
     },
-    function(error) {
+    (error) => {
       console.error(error);
     })
   }

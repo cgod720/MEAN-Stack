@@ -30,11 +30,32 @@ router.post('/', (req, res) => {
   })
 })
 
+
 router.get('/currentUser', (req, res) => {
   // if there is a currentUser,
   // send the currentUser to the client
   // if there is no currentUser, send false
   res.status(200).json(req.session.currentUser || false);
+})
+
+
+router.delete('/', (req, res) => {
+  // destroy current session
+  req.session.destroy(err =>{
+		if(err){
+      // send an error message back to client
+			res.status(500).json({
+        status: 500,
+        message: 'Unexpected error occured'
+      });
+		} else {
+      // send success message back to client
+      res.status(200).json({
+        status: 200,
+        message: 'User is now logged out'
+      });
+		}
+	});
 })
 
 module.exports = router;
