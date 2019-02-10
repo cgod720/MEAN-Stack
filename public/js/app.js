@@ -1,6 +1,6 @@
 const app = angular.module('TheApp', []);
 
-app.controller('MainController', ['$http', function($http){
+app.controller('MainController', ['$http', '$sce', function($http, $sce){
   this.includePath  = 'partials/landing.html';
   this.logInForm = {};
   this.signUpForm = {};
@@ -103,6 +103,39 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  this.getUserLocation = () => {
+    // Make request to get user's public IP address
+    $http({
+      method: 'GET',
+      url: 'https://api.ipify.org?format=json'
+    }).then((json) => {
+      // Make request to find user's location based on their public IP
+      $http({
+        method: 'GET',
+        url: `http://ip-api.com/json/${json.data.ip}`
+      }).then((res) => {
+        // concatenate lat and lon into comma-separated string
+        this.currentLocation = `${res.data.lat},${res.data.lon}`;
+      })
+    })
+  }
+
+  this.getMapURL = () => {
+    // If user's location is no known
+    if (!this.currentLocation) {
+      // return map of eiffel tower
+      return 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=Eiffel+Tower,Paris+France'
+    } else if (!this.currentDestination) {
+      // if there is not set destination
+      // return map of user's location
+      return $sce.trustAsResourceUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=${this.currentLocation}`);
+    } else {
+      // if user's location is available and a destination is set
+      // display route
+      return $sce.trustAsResourceUrl(`https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&origin=${this.currentLocation}&destination=${this.currentDestination}`);
+    }
+  }
+
   this.getCurrentUser = () => {
     // Make request to get current user
     $http({
@@ -127,6 +160,7 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  this.getUserLocation();
   // Call getCurrentUser as soon as page loads
   this.getCurrentUser();
 }]);
