@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 router.post('/', (req, res) => {
   // Find user with provided username
-  User.findOne({username: req.body.username}, (err, foundUser) => {
+  User.findOne({username: req.body.username.toLowerCase()}, (err, foundUser) => {
     // If there is no user with that username
     if (!foundUser){
       // Send error to client

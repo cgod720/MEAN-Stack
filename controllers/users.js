@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 router.post('/', (req, res) => {
   // check if a user with the provided username already exists
-  User.findOne({ username: req.body.username }, (err, foundUser) => {
+  User.findOne({ username: req.body.username.toLowerCase() }, (err, foundUser) => {
     // if user does exist
     if (foundUser) {
       // Send error message back to client
@@ -15,6 +15,10 @@ router.post('/', (req, res) => {
       })
     } else {
       // there is no user with the provided username
+
+      // convert username to lower case
+      req.body.username = req.body.username.toLowerCase();
+      
       // encrypt password provided in sign up form
       req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
 
