@@ -8,10 +8,32 @@
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
-    <button ng-click="ctrl.logOut()">Log Out</button>
-    <div class="wrapper">
-      <div ng-include="ctrl.includePath">
-      </div>
-    </div>
+    <nav>
+      <span>Routr</span>
+
+      <!-- if user is logged in -->
+      <button
+        ng-if="ctrl.currentUser"
+        ng-click="ctrl.logOut()"
+      >
+        Log Out
+      </button>
+
+      <!-- if user is logged out -->
+      <button
+        ng-if="ctrl.currentUser === false"
+        ng-click="ctrl.changeInclude('login')"
+      >
+        Log In
+      </button>
+      <button
+        ng-if="ctrl.currentUser === false"
+        ng-click="ctrl.changeInclude('signup')"
+      >
+        Sign Up
+      </button>
+    </nav>
+  
+    <div ng-include="ctrl.includePath"></div>
   </body>
 </html>
