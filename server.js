@@ -4,11 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
 
-//Port
-const PORT = process.env.PORT || 3000;
 
-//Database
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/routr';
 
 //Middleware
 app.use(session({
@@ -27,14 +23,12 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions.js');
 app.use('/sessions', sessionsController);
 
-const placesController = require('./controllers/places.js');
-app.use('/places', placesController);
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
   console.log('Ready..');
 })
 
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/ideas', {useNewUrlParser: true});
 mongoose.connection.once('open', () => {
   console.log("Mongo Connected");
 })
