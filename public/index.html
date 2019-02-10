@@ -8,35 +8,32 @@
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
-    <div class="container">
-      <div class="column-left">
-        <button ng-click="ctrl.logOut()">Log Out</button>
-      <h1>ROUTR</h1>
-      <h1 ng-if="ctrl.currentUser">Welcome, {{ctrl.currentUser.username}}</h1>
+    <nav>
+      <span>Routr</span>
 
-      <div class="wrapper">
-        <div ng-include="ctrl.includePath">
-        </div>
-      </div>
+      <!-- if user is logged in -->
+      <button
+        ng-if="ctrl.currentUser"
+        ng-click="ctrl.logOut()"
+      >
+        Log Out
+      </button>
 
-
-        <!-- <form ng-submit="ctrl.createUser()">
-          <input type="text" ng-model="ctrl.userName" placeholder="New User"/>
-          <input type="password" ng-model="ctrl.password" placeholder="Password"/><br/>
-          <input type="submit" value="Create User">
-        </form> -->
-
-        <!-- <form ng-submit="ctrl.logIn()">
-          <input type="text" ng-model="ctrl.user" placeholder="User Name"/>
-          <input type="password" ng-model="ctrl.pass" placeholder="Password"/><br/>
-          <input type="submit" value="Log In">
-        </form> -->
-
-      </div>
-    </div>
-        <iframe
-            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A
-            &origin=Oslo+Norway&destination=Telemark+Norway&avoid=tolls|highways" allowfullscreen>
-        </iframe>
+      <!-- if user is logged out -->
+      <button
+        ng-if="ctrl.currentUser === false"
+        ng-click="ctrl.changeInclude('login')"
+      >
+        Log In
+      </button>
+      <button
+        ng-if="ctrl.currentUser === false"
+        ng-click="ctrl.changeInclude('signup')"
+      >
+        Sign Up
+      </button>
+    </nav>
+  
+    <div ng-include="ctrl.includePath"></div>
   </body>
 </html>
