@@ -2,6 +2,8 @@ const app = angular.module('TheApp', []);
 
 app.controller('MainController', ['$http', function($http){
   this.includePath  = 'partials/landing.html';
+  this.logInForm = {};
+  this.signUpForm = {};
 
   this.changeInclude = (path) => {
     this.includePath = 'partials/' + path + '.html';
@@ -13,11 +15,13 @@ app.controller('MainController', ['$http', function($http){
       method: "POST",
       url: '/users',
       data: {
-        username: this.userName,
-        password: this.password
+        username: this.signUpForm.username,
+        password: this.signUpForm.password
       }
     }).then((response) => {
-        console.log(response);
+        this.currentUser = response.data;
+        this.includePath  = 'partials/map.html';
+        this.signUpForm = {};
     }, (err) => {
         console.log(err);
     })
@@ -28,11 +32,13 @@ app.controller('MainController', ['$http', function($http){
       method: "POST",
       url: '/sessions',
       data: {
-        username: this.user,
-        password: this.pass
+        username: this.logInForm.username,
+        password: this.logInForm.password
       }
     }).then((response) => {
         this.currentUser = response.data;
+        this.includePath  = 'partials/map.html';
+        this.logInForm = {};
     }, (err) => {
         console.log(err);
     })
@@ -44,6 +50,7 @@ app.controller('MainController', ['$http', function($http){
       url: '/sessions'
     }).then((response) => {
       this.currentUser = false;
+      this.includePath  = 'partials/landing.html';
     },
     (error) => {
       console.error(error);
@@ -56,6 +63,11 @@ app.controller('MainController', ['$http', function($http){
       url: 'sessions/currentUser'
     }).then((response) => {
       this.currentUser = response.data;
+      if (response.data) {
+        this.includePath  = 'partials/map.html';
+      } else {
+        this.includePath  = 'partials/landing.html';
+      }
     },
     (error) => {
       console.error(error);
