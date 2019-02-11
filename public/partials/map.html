@@ -1,10 +1,25 @@
 <div class="container">
   <div class="column-left">
-    <span ng-repeat="place in ctrl.savedPlaces">
-      <hr>
-      <h4 id="subtitle">Saved Locations</h4>
-      {{place.name}}<button ng-click=""><i class="fas fa-plus"></i></button><button ng-click=""><i class="fas fa-pencil-alt"></i></button><button ng-click=""><i class="fas fa-trash"></i></button>
-    </span>
+
+  <div ng-if="ctrl.currentUser">
+    <h4>Saved Locations</h4>
+    <div ng-repeat="place in ctrl.savedPlaces">
+      {{place.name}}
+        <button><i class="fas fa-pencil-alt" ng-click="ctrl.editIndexForm = $index"></i></button>
+        <button ng-click="ctrl.deletePlace(place)"><i class="fas fa-trash"></i></button>
+          <form ng-if="$index === ctrl.editIndexForm" ng-submit="ctrl.updatePlace(place)">
+            <input type="text" ng-model="ctrl.updatedName" id="clearField"><input ng-click="ctrl.clearField()" type="submit" value="Update">
+          </form>
+    </div>
+  </div>
+
+      <div>
+        <h4>Nearby</h4>
+          <div ng-repeat="gplace in ctrl.googlePlaces">
+            {{gplace.name}}
+            <button ng-if="ctrl.currentUser"><i class="fas fa-plus"></i></button>
+          </div>
+      </div>
   </div>
 </div>
 <iframe
