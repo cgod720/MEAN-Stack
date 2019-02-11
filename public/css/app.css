@@ -19,6 +19,10 @@ nav {
   padding: 5px 15px;
 }
 
+nav .btn:first-of-type {
+  margin-right: 10px;
+}
+
 .brand {
   font-size: 32px;
   margin-right: auto;
@@ -28,18 +32,24 @@ nav {
 .container {
   height: 100%;
   display: flex;
-  background: cornflowerblue;
+  background: url('https://images.pexels.com/photos/297642/pexels-photo-297642.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') top center/cover no-repeat;
 }
 
 .form-wrapper {
   background: white;
   margin: auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 
 .btn {
   background: white;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
 }
 
 .black {
@@ -47,9 +57,19 @@ nav {
   color: black;
 }
 
+.black:hover {
+  background: black;
+  color: white;
+}
+
 .blue {
   border: 2px solid cornflowerblue;
   color: cornflowerblue;
+}
+
+.blue:hover {
+  background: cornflowerblue;
+  color: white;
 }
 
 
