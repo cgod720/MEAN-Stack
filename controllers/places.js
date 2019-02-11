@@ -11,9 +11,9 @@ router.post('/', (req, res) => {
 
   });
 });
-get route
+//get route
 router.get('/', (req, res) => {
-  Places.find({}, (err, foundPlace) => {
+  Places.find({createdBy: req.session.currentUser._id}, (err, foundPlace) => {
     res.json(foundPlace);
 
   });
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 //update route
 router.put('/:id', (req, res) => {
-  Places.findByIdAndUpdate(req.params.id, req.body, (err, updatedPlace) => {
+  Places.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedPlace) => {
     res.json(updatedPlace);
   });
 });

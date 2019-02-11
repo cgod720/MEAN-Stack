@@ -1,6 +1,10 @@
 <div class="container">
   <div class="column-left">
-
+    <span ng-repeat="place in ctrl.savedPlaces">
+      <hr>
+      <h4 id="subtitle">Saved Locations</h4>
+      {{place.name}}<button ng-click=""><i class="fas fa-plus"></i></button><button ng-click=""><i class="fas fa-pencil-alt"></i></button><button ng-click=""><i class="fas fa-trash"></i></button>
+    </span>
   </div>
 </div>
 <iframe

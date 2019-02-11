@@ -75,6 +75,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
           password: this.logInForm.password
         }
       }).then((response) => {
+        this.getDB();
           // set current user to user returned from db
           this.currentUser = response.data;
           // navigate to the map view
@@ -130,7 +131,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     // If user's location is no known
     if (!this.currentLocation) {
       // return map of eiffel tower
-      return 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=Eiffel+Tower,Paris+France'
+      return $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=Eiffel+Tower,Paris+France');
     } else if (!this.currentDestination) {
       // if there is not set destination
       // return map of user's location
@@ -174,6 +175,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     } else {
       // Find places nearby that match searchTerm
       this.getGooglePlaces(this.searchTerm);
+      this.getDB();
       // navigate to map view
       this.includePath = 'partials/map.html';
     }
@@ -185,6 +187,9 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
       method: 'GET',
       url: 'sessions/currentUser'
     }).then((response) => {
+      if(response.data) {
+      this.getDB();
+    }
       // if a user is logged in, currentUser will equal user object
       // if a user is not logged in, currentUser will equal false
       this.currentUser = response.data;
@@ -203,57 +208,19 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     })
   }
 
+  this.getDB = () => {
+  $http({
+    method: 'GET',
+    url: '/places'
+  }).then(function(response) {
+    controller.savedPlaces = response.data;
+  }, function(err) {
+    console.log(err);
+  })
+}
+
+
   this.getUserLocation();
   // Call getCurrentUser as soon as page loads
   this.getCurrentUser();
-}]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.controller('PlacesController', ['$http', function($http) {
-  const controller = this;
-
-  this.createPlace = () => {
-    $http({
-    method: 'POST',
-    url: '/places',
-      data: {
-        name: this.name,
-        location: this.location,
-        createdBy: this.createdBy
-      }
-  }).then(function(response) {
-    console.log(response);
-  }, function(error) {
-    console.log(err);
-  });
- }
-
- this.pullLocation = (data) => {
-   $http({
-     method: 'GET',
-     url: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&q=Empire+State+Building'
-       // data: {
-       //   Title: this.Title,
-       //   Year: this.Year,
-       //   Released: this.Released
-       // }
-   }).then(function(response) {
-     console.log(response);
-   }, function(err) {
-     console.log(err);
-   });
- }
 }]);
