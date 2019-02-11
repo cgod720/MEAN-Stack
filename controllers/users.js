@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
       // convert username to lower case
       req.body.username = req.body.username.toLowerCase();
-      
+
       // encrypt password provided in sign up form
       req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
 
@@ -32,4 +32,3 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
-›
