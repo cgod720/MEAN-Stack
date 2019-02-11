@@ -11,7 +11,7 @@
   </head>
   <body ng-controller="MainController as ctrl">
     <nav>
-      <span>Routr</span>
+      <span class="">Routr</span>
 
       <!-- if user is logged in -->
       <button
@@ -36,6 +36,10 @@
       </button>
     </nav>
 
-    <div ng-include="ctrl.includePath"></div>
+    <div
+      class="container"
+      ng-include="ctrl.includePath"
+    >
+    </div>
   </body>
 </html>

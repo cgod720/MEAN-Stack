@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Work+Sans');
+
 html {
   height: 100%;
   padding: 0;
@@ -7,8 +9,62 @@ html {
 body {
   height: 100%;
   padding: 0;
-  margin: 0
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+}
+
+.brand {
+  font-size: 32px;
+  margin-right: auto;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  background: cornflowerblue;
+}
+
+.form-wrapper {
+  background: white;
+  margin: auto;
+}
+
+.btn {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.black {
+  border: 2px solid black;
+  color: black;
+}
+
+.blue {
+  border: 2px solid cornflowerblue;
+  color: cornflowerblue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 form {
   margin-bottom: 20px;
