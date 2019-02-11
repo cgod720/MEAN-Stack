@@ -144,7 +144,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     }
   }
 
-  this.getGooglePlaces = (searchTerm) => {
+  this.getGooglePlaces = () => {
     // save google places library to places variable
     const places = new google.maps.places.PlacesService(document.createElement('div'));
     // set users current location to location variable
@@ -152,7 +152,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
 
     // request places near user's location that match the searchTerm
     places.textSearch({
-      query: searchTerm,
+      query: controller.searchTerm,
       location: location,
       radius: '10000'
     }, (results, status) => {

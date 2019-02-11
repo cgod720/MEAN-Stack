@@ -1,6 +1,6 @@
 <div class="container">
   <div class="column-left">
-
+    <input type="text" ng-change="ctrl.getGooglePlaces()" ng-model="ctrl.searchTerm">
   <div ng-if="ctrl.currentUser">
     <h4>Saved Locations</h4>
     <div ng-repeat="place in ctrl.savedPlaces">
