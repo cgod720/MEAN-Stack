@@ -8,6 +8,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   this.signUpForm = {};
   this.errorMessage = '';
   this.googlePlaces = [];
+  this.editIndexForm = 1;
 
   this.changeInclude = (path) => {
     // clear errorMessage whenever navigating to a different page
@@ -75,7 +76,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
           password: this.logInForm.password
         }
       }).then((response) => {
-        this.getDB();
+        this.getPlaces();
           // set current user to user returned from db
           this.currentUser = response.data;
           // navigate to the map view
@@ -175,7 +176,6 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     } else {
       // Find places nearby that match searchTerm
       this.getGooglePlaces(this.searchTerm);
-      this.getDB();
       // navigate to map view
       this.includePath = 'partials/map.html';
     }
@@ -188,7 +188,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
       url: 'sessions/currentUser'
     }).then((response) => {
       if(response.data) {
-      this.getDB();
+      this.getPlaces();
     }
       // if a user is logged in, currentUser will equal user object
       // if a user is not logged in, currentUser will equal false
@@ -208,7 +208,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     })
   }
 
-  this.getDB = () => {
+  this.getPlaces = () => {
   $http({
     method: 'GET',
     url: '/places'
@@ -219,6 +219,32 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   })
 }
 
+
+this.deletePlace = (place) => {
+  $http({
+    method: 'DELETE',
+    url: '/places/' + place._id
+  }).then(function(response) {
+  controller.getPlaces();
+  }, function(err) {
+    console.log(err);
+  })
+}
+
+this.updatePlace = (place) => {
+  $http({
+    method: 'PUT',
+    url: '/places/' + place._id,
+      data: {
+        name: this.updatedName
+      }
+  }).then(function(response){
+    controller.getPlaces();
+    controller.updatedName = '';
+  }, function(err) {
+    console.log(err);
+  })
+}
 
   this.getUserLocation();
   // Call getCurrentUser as soon as page loads
