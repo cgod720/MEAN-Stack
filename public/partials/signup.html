@@ -1,8 +1,24 @@
-<div class="form-wrapper">
-  <p ng-if="ctrl.errorMessage">{{ ctrl.errorMessage }}</p>
-  <form ng-submit="ctrl.createUser()">
-    <input type="text" ng-model="ctrl.signUpForm.username" placeholder="New User"/>
-    <input type="password" ng-model="ctrl.signUpForm.password" placeholder="Password"/><br/>
-    <input type="submit" value="Create User">
-  </form>
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1><i class="fas fa-map-signs"></i>Routr</h1>
+    <p class="form-message">Sign Up</p>
+    <p ng-if="ctrl.errorMessage" class="error-message">{{ ctrl.errorMessage }}</p>
+    <form ng-submit="ctrl.createUser()">
+      <input
+        type="text"
+        ng-model="ctrl.signUpForm.username"
+        placeholder="New User"
+      />
+      <input
+        type="password"
+        ng-model="ctrl.signUpForm.password"
+        placeholder="Password"
+      />
+      <input
+        type="submit"
+        value="Sign Up"
+        class="btn green"
+      >
+    </form>
+  </div>
 </div>

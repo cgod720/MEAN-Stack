@@ -1,6 +1,11 @@
-<div class="form-wrapper">
-  <p>Where would you like to go?</p>
-  <p ng-if="ctrl.errorMessage">{{ ctrl.errorMessage }}</p>
-  <input type="text" placeholder="Destination" ng-model="ctrl.searchTerm">
-  <button ng-click="ctrl.onLandingSearch()">Go</button>
+<div class="form-container">
+  <div class="form-wrapper">
+    <h1><i class="fas fa-map-signs"></i>Routr</h1>
+    <p class="form-message">Where would you like to go?</p>
+    <p ng-if="ctrl.errorMessage" class="error-message">{{ ctrl.errorMessage }}</p>
+    <form ng-submit="ctrl.onLandingSearch()" class="landing-form">
+      <input type="text" placeholder="Destination" ng-model="ctrl.searchTerm">
+      <button class="btn green" type="submit">Go</button>
+    </form>
+  </div>
 </div>
