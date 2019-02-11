@@ -16,6 +16,12 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
     this.includePath = 'partials/' + path + '.html';
   }
 
+  this.goToLanding = () => {
+    if (!this.currentUser) {
+      this.includePath  = 'partials/landing.html';
+    }
+  }
+
 
   this.createUser = () => {
     // Clear errorMessage
@@ -145,25 +151,29 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   }
 
   this.getGooglePlaces = () => {
-    // save google places library to places variable
-    const places = new google.maps.places.PlacesService(document.createElement('div'));
-    // set users current location to location variable
-    const location = new google.maps.LatLng(this.currentLocation.lat,this.currentLocation.lon);
+    if (this.currentLocation && this.searchTerm) {
+      // save google places library to places variable
+      const places = new google.maps.places.PlacesService(document.createElement('div'));
+      // set users current location to location variable
+      const location = new google.maps.LatLng(this.currentLocation.lat,this.currentLocation.lon);
 
-    // request places near user's location that match the searchTerm
-    places.textSearch({
-      query: controller.searchTerm,
-      location: location,
-      radius: '10000'
-    }, (results, status) => {
-      // If the request was successful
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        // save list of places to variable
-        controller.googlePlaces = results;
-        // Force map view to re render
-        $scope.$apply();
-      }
-    });
+      // request places near user's location that match the searchTerm
+      places.textSearch({
+        query: controller.searchTerm,
+        location: location,
+        radius: '10000'
+      }, (results, status) => {
+        // If the request was successful
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // save list of places to variable
+          controller.googlePlaces = results;
+          // Force map view to re render
+          $scope.$apply();
+        }
+      });
+    } else {
+      this.googlePlaces = [];
+    }
   }
 
   this.onLandingSearch = () => {

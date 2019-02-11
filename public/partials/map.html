@@ -3,7 +3,7 @@
     <input type="text" ng-change="ctrl.getGooglePlaces()" ng-model="ctrl.searchTerm">
   <div ng-if="ctrl.currentUser">
     <h4>Saved Locations</h4>
-    <div ng-repeat="place in ctrl.savedPlaces">
+    <div ng-repeat="place in ctrl.savedPlaces | filter:ctrl.searchTerm">
       {{place.name}}
         <button><i class="fas fa-pencil-alt" ng-click="ctrl.editIndexForm = $index"></i></button>
         <button ng-click="ctrl.deletePlace(place)"><i class="fas fa-trash"></i></button>
