@@ -1,9 +1,12 @@
 <div class="container">
   <div class="column-left">
-    
+    <span ng-repeat="place in ctrl.savedPlaces">
+      <hr>
+      <h4 id="subtitle">Saved Locations</h4>
+      {{place.name}}<button ng-click=""><i class="fas fa-plus"></i></button><button ng-click=""><i class="fas fa-pencil-alt"></i></button><button ng-click=""><i class="fas fa-trash"></i></button>
+    </span>
   </div>
 </div>
 <iframe
-    src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A
-    &origin=Oslo+Norway&destination=Telemark+Norway&avoid=tolls|highways" allowfullscreen>
+    ng-src="{{ ctrl.getMapURL() }}" allowfullscreen>
 </iframe>

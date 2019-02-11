@@ -24,6 +24,7 @@ router.post('/', (req, res) => {
 
       // create new user
       User.create(req.body, (err, createdUser) => {
+          req.session.currentUser = createdUser;
         // send created user back to client
         res.status(201).json(createdUser);
       });
