@@ -12,12 +12,15 @@
   </head>
   <body ng-controller="MainController as ctrl">
     <nav>
-      <span>Routr</span>
+      <span class="brand" ng-click="ctrl.goToLanding()">
+        Routr
+      </span>
 
       <!-- if user is logged in -->
       <button
         ng-if="ctrl.currentUser"
         ng-click="ctrl.logOut()"
+        class="btn black"
       >
         Log Out
       </button>
@@ -26,17 +29,23 @@
       <button
         ng-if="ctrl.currentUser === false"
         ng-click="ctrl.changeInclude('login')"
+        class="btn black"
       >
         Log In
       </button>
       <button
         ng-if="ctrl.currentUser === false"
         ng-click="ctrl.changeInclude('signup')"
+        class="btn blue"
       >
         Sign Up
       </button>
     </nav>
 
-    <div ng-include="ctrl.includePath"></div>
+    <div
+      class="container"
+      ng-include="ctrl.includePath"
+    >
+    </div>
   </body>
 </html>

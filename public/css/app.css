@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Work+Sans');
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
   padding: 0;
@@ -7,12 +13,149 @@ html {
 body {
   height: 100%;
   padding: 0;
-  margin: 0
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-form {
-  margin-bottom: 20px;
+h1 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
 }
+
+.fa-map-signs {
+  font-size: 26px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+nav .btn:first-of-type {
+  margin-right: 10px;
+}
+
+.brand {
+  font-size: 32px;
+  margin-right: auto;
+  font-family: 'Work Sans', sans-serif;
+  cursor: pointer;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+}
+
+.form-message {
+  text-align: center;
+}
+
+.error-message {
+  text-align: center;
+  color: red;
+  margin: 0 0 5px;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  background: url('https://images.pexels.com/photos/297642/pexels-photo-297642.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') top center/cover no-repeat;
+}
+
+.form-wrapper {
+  background: white;
+  margin: auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 300px;
+}
+
+.form-wrapper input[type=text], .form-wrapper input[type=password] {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid black;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+.form-wrapper .btn {
+  width: 100%;
+  margin-top: 20px
+}
+
+.landing-form .btn {
+  margin-top: 10px;
+}
+
+.btn {
+  background: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  outline: none;
+}
+
+.black {
+  border: 2px solid black;
+  color: black;
+}
+
+.black:hover {
+  background: black;
+  color: white;
+}
+
+.blue {
+  border: 2px solid cornflowerblue;
+  color: cornflowerblue;
+}
+
+.blue:hover {
+  background: cornflowerblue;
+  color: white;
+}
+
+.green {
+  border: 2px solid green;
+  color: green;
+}
+
+.green:hover {
+  background: green;
+  color: white;
+}
+
+form > * {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 iframe {
   position: fixed;
   border: none;
