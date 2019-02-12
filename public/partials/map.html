@@ -37,19 +37,33 @@
 
   <div>
     <h4 class="list-heading">Nearby</h4>
-      <div ng-repeat="gplace in ctrl.googlePlaces">
-        <div
-          ng-click="ctrl.setCurrentDestination(gplace.geometry.location.lat(), gplace.geometry.location.lng())"
-        >
-          <p>{{gplace.name}}</p>
-          <span>{{gplace.formatted_address}}</span>
+      <div ng-repeat="gplace in ctrl.googlePlaces" class="place-list-item">
+        <div class="list-item-content">
+          <div
+            ng-click="ctrl.setCurrentDestination(gplace.geometry.location.lat(), gplace.geometry.location.lng())"
+            class="item-title"
+          >
+            <p>{{gplace.name}}</p>
+            <span class="address">{{gplace.formatted_address}}</span>
+          </div>
+          <i
+            class="fas fa-plus"
+            ng-click="ctrl.editAddForm = $index"
+            ng-if="ctrl.currentUser"
+          ></i>
         </div>
         <div ng-if="ctrl.currentUser">
-            <button><i class="fas fa-plus" ng-click="ctrl.editAddForm = $index"></i></button>
-            <form ng-if="$index === ctrl.editAddForm" ng-submit="ctrl.addPlace(gplace)">
-              <input type="text" ng-model="ctrl.newName"><input type="submit" value="Add">
-            </form>
-          </div>
+          <hr ng-if="$index === ctrl.editAddForm">
+          <form
+            ng-if="$index === ctrl.editAddForm"
+            ng-submit="ctrl.addPlace(gplace)"
+            class="item-form"
+          >
+            <label>Name:</label>
+            <input type="text" ng-model="ctrl.newName">
+            <input type="submit" value="Add" class="btn green">
+          </form>
+        </div>
       </div>
   </div>
 </div>

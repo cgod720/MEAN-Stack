@@ -8,8 +8,6 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   this.signUpForm = {};
   this.errorMessage = '';
   this.googlePlaces = [];
-  this.editIndexForm = 0;
-  this.editAddForm = 0;
 
   this.changeInclude = (path) => {
     // clear errorMessage whenever navigating to a different page
@@ -245,40 +243,46 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   }
 
   this.updatePlace = (place) => {
-    $http({
-      method: 'PUT',
-      url: '/places/' + place._id,
-        data: {
-          name: this.updatedName
-        }
-    }).then(function(response){
-      controller.getPlaces();
-      controller.updatedName = '';
-    }, function(err) {
-      console.log(err);
-    })
+    if (this.updatedName) {
+      $http({
+        method: 'PUT',
+        url: '/places/' + place._id,
+          data: {
+            name: this.updatedName
+          }
+      }).then(function(response){
+        controller.getPlaces();
+        controller.editIndexForm = null;
+        controller.updatedName = '';
+      }, function(err) {
+        console.log(err);
+      })
+    }
   }
 
   this.addPlace = (data) => {
-    const newLat = data["geometry"].location.lat();
-    const newLng = data["geometry"].location.lng();
+    if (this.newName) {
+      const newLat = data["geometry"].location.lat();
+      const newLng = data["geometry"].location.lng();
 
-    $http({
-      method: 'POST',
-      url: '/places',
-        data: {
-          name: this.newName,
-          location: {
-            lat: newLat,
-            lng: newLng
-          },
-          createdBy: this.currentUser._id
-        }
-    }).then(function(response) {
-      controller.getPlaces();
-    }, function(err) {
-      console.log(err);
-    });
+      $http({
+        method: 'POST',
+        url: '/places',
+          data: {
+            name: this.newName,
+            location: {
+              lat: newLat,
+              lng: newLng
+            },
+            createdBy: this.currentUser._id
+          }
+      }).then(function(response) {
+        controller.getPlaces();
+        controller.editAddForm = null;
+      }, function(err) {
+        console.log(err);
+      });
+    }
   }
 
   this.setCurrentDestination = (lat, lon) => {
