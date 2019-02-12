@@ -18,6 +18,7 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   this.goToLanding = () => {
     // if there is no current user
     if (!this.currentUser) {
+      this.errorMessage = '';
       // navigate to the landing page
       this.includePath  = 'partials/landing.html';
     }
