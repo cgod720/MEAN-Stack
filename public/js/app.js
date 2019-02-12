@@ -222,68 +222,69 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   }
 
   this.getPlaces = () => {
-  $http({
-    method: 'GET',
-    url: '/places'
-  }).then(function(response) {
-    controller.savedPlaces = response.data;
-  }, function(err) {
-    console.log(err);
-  })
-}
+    $http({
+      method: 'GET',
+      url: '/places'
+    }).then(function(response) {
+      controller.savedPlaces = response.data;
+    }, function(err) {
+      console.log(err);
+    })
+  }
 
 
-this.deletePlace = (place) => {
-  $http({
-    method: 'DELETE',
-    url: '/places/' + place._id
-  }).then(function(response) {
-  controller.getPlaces();
-  }, function(err) {
-    console.log(err);
-  })
-}
-
-this.updatePlace = (place) => {
-  $http({
-    method: 'PUT',
-    url: '/places/' + place._id,
-      data: {
-        name: this.updatedName
-      }
-  }).then(function(response){
+  this.deletePlace = (place) => {
+    $http({
+      method: 'DELETE',
+      url: '/places/' + place._id
+    }).then(function(response) {
     controller.getPlaces();
-    controller.updatedName = '';
-  }, function(err) {
-    console.log(err);
-  })
-}
+    }, function(err) {
+      console.log(err);
+    })
+  }
 
-this.addPlace = (data) => {
-const newLat = data["geometry"].location.lat();
-const newLng = data["geometry"].location.lng();
+  this.updatePlace = (place) => {
+    $http({
+      method: 'PUT',
+      url: '/places/' + place._id,
+        data: {
+          name: this.updatedName
+        }
+    }).then(function(response){
+      controller.getPlaces();
+      controller.updatedName = '';
+    }, function(err) {
+      console.log(err);
+    })
+  }
 
-// console.log(data["geometry"].location.lat());
-// console.log(data["geometry"].location.lng());
-// console.log(this.currentUser._id);
-  $http({
-    method: 'POST',
-    url: '/places',
-      data: {
-        name: this.newName,
-        location: {
-          lat: newLat,
-          lng: newLng
-        },
-        createdBy: this.currentUser._id
-      }
-  }).then(function(response) {
-    console.log(response);
-    controller.getPlaces();
-  }, function(err) {
-    console.log(err);
-  });
-}
+  this.addPlace = (data) => {
+    const newLat = data["geometry"].location.lat();
+    const newLng = data["geometry"].location.lng();
+
+    $http({
+      method: 'POST',
+      url: '/places',
+        data: {
+          name: this.newName,
+          location: {
+            lat: newLat,
+            lng: newLng
+          },
+          createdBy: this.currentUser._id
+        }
+    }).then(function(response) {
+      controller.getPlaces();
+    }, function(err) {
+      console.log(err);
+    });
+  }
+
+  this.setCurrentDestination = (lat, lon) => {
+    // concatenate string of comma-separated lat and lon
+    this.currentDestination = `${lat},${lon}`;
+  }
 
   this.getUserLocation();
   // Call getCurrentUser as soon as page loads
