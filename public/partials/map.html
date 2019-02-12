@@ -11,6 +11,7 @@
     <div
       ng-repeat="place in ctrl.savedPlaces | filter:ctrl.searchTerm"
       class="saved-list-item"
+      ng-if="place.createdBy === ctrl.currentUser._id"
     >
       <div class="list-item-content">
         <span
