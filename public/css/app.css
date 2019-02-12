@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Work+Sans');
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
   padding: 0;
@@ -7,27 +13,249 @@ html {
 body {
   height: 100%;
   padding: 0;
-  margin: 0
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-form {
-  margin-bottom: 20px;
+h1 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
 }
+
+.fa-map-signs {
+  font-size: 26px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  z-index: 1;
+}
+
+nav .btn:first-of-type {
+  margin-right: 10px;
+}
+
+.brand {
+  font-size: 32px;
+  margin-right: auto;
+  font-family: 'Work Sans', sans-serif;
+  cursor: pointer;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+}
+
+.form-message {
+  text-align: center;
+}
+
+.error-message {
+  text-align: center;
+  color: red;
+  margin: 0 0 5px;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  background: url('https://images.pexels.com/photos/297642/pexels-photo-297642.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') top center/cover no-repeat;
+}
+
+.form-wrapper {
+  background: white;
+  margin: auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 300px;
+}
+
+form input[type=text], form input[type=password] {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid black;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+form .btn {
+  width: 100%;
+  margin-top: 20px
+}
+
+.landing-form .btn, .item-form .btn {
+  margin-top: 10px;
+}
+
+.btn {
+  background: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  outline: none;
+}
+
+.black {
+  border: 2px solid black;
+  color: black;
+}
+
+.black:hover {
+  background: black;
+  color: white;
+}
+
+.blue {
+  border: 2px solid cornflowerblue;
+  color: cornflowerblue;
+}
+
+.blue:hover {
+  background: cornflowerblue;
+  color: white;
+}
+
+.green {
+  border: 2px solid green;
+  color: green;
+}
+
+.green:hover {
+  background: green;
+  color: white;
+}
+
+form > * {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 iframe {
-  position: fixed;
+  flex: 1;
   border: none;
-  top: 0;
-  bottom: 0;
-  left: 2;
-  right: 0;
-  width: 80%;
-  height: 100%;
-  z-index: -1;
 }
 .column-left {
-  width: 20%;
-  border: none;
-  position: fixed;
-  right: 3;
-  margin-left: -10px;
+  width: 300px;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.search-bar {
+  display: block;
+  margin: 20px auto 0;
+  width: 90%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid black;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+.list-heading {
+  text-align: center;
+}
+
+.saved-list-item, .place-list-item {
+  padding: 20px 10px;
+  border-bottom: 1px solid #AAA;
+}
+
+.saved-list-item:first-of-type {
+  border-top: 1px solid #AAA;
+}
+
+.place-list-item:first-of-type {
+  border-top: 1px solid #AAA;
+}
+
+.list-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.list-item-content p {
+  margin: 0 0 5px;
+}
+
+.item-title {
+  margin-right: auto;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.address {
+  color: #888;
+  font-size: 12px;
+  font-style: italic;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+hr {
+  margin: 15px 0 15px;
+}
+
+.fa-pencil-alt {
+  color: cornflowerblue;
+  margin-right: 7.5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.fa-trash {
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.fa-plus {
+  color: green;
+  cursor: pointer;
+}
+
+
+
+@media(max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+  .column-left {
+    width: 100%;
+    flex: 1;
+  }
+
+  iframe {
+    flex: none;
+    height: 40vh;
+    min-height: 150px;
+  }
 }

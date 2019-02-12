@@ -3,19 +3,16 @@ const mongoose = require('mongoose');
 const placesSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'You can\'t see what you don\'t write'],  //just showing we can add a log message here for user, but prob not required
-    unique: true
+    required: true
+
   },
   location: {
     lat: Number,
     lng: Number
   },
-  createdBy: {
-    lat: Number,
-    lng: Number
-  }
+  createdBy: String
 });
 
-const Places = mongoose.model('Places', placesSchema);
+const Places = mongoose.model('Place', placesSchema);
 
 module.exports = Places;

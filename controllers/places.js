@@ -6,21 +6,22 @@ const Places = require('../models/places.js');
 
 //create route
 router.post('/', (req, res) => {
+  console.log(req.body);
   Places.create(req.body, (err, createdPlace) => {
     res.json(createdPlace);
-
   });
 });
 //get route
 router.get('/', (req, res) => {
-  Places.find({}, (err, foundPlace) => {
+  Places.find({createdBy: req.session.currentUser._id}, (err, foundPlace) => {
     res.json(foundPlace);
-  
+
   });
 });
+
 //update route
 router.put('/:id', (req, res) => {
-  Places.findByIdAndUpdate(req.params.id, req.body, (err, updatedPlace) => {
+  Places.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedPlace) => {
     res.json(updatedPlace);
   });
 });

@@ -1,11 +1,74 @@
-<div class="container">
-  <div class="column-left">
+<div class="column-left">
+  <input
+    type="text"
+    ng-change="ctrl.getGooglePlaces()"
+    ng-model="ctrl.searchTerm"
+    placeholder="Destination"
+    class="search-bar"
+  >
+  <div ng-if="ctrl.currentUser">
+    <h4 class="list-heading">Saved Locations</h4>
+    <div
+      ng-repeat="place in ctrl.savedPlaces | filter:ctrl.searchTerm"
+      class="saved-list-item"
+      ng-if="place.createdBy === ctrl.currentUser._id"
+    >
+      <div class="list-item-content">
+        <span
+          ng-click="ctrl.setCurrentDestination(place.location.lat, place.location.lng)"
+          class="item-title"
+        >
+          {{place.name}}
+        </span>
 
+        <i class="fas fa-pencil-alt" ng-click="ctrl.editIndexForm = $index"></i>
+        <i class="fas fa-trash" ng-click="ctrl.deletePlace(place)"></i>
+      </div>
+      <hr ng-if="$index === ctrl.editIndexForm">
+      <form
+        ng-if="$index === ctrl.editIndexForm"
+        ng-submit="ctrl.updatePlace(place)"
+        class="item-form"
+      >
+        <label>Name:</label>
+        <input type="text" ng-model="ctrl.updatedName">
+        <input class="btn blue" type="submit" value="Update">
+      </form>
+    </div>
+  </div>
 
-
+  <div>
+    <h4 class="list-heading">Nearby</h4>
+      <div ng-repeat="gplace in ctrl.googlePlaces" class="place-list-item">
+        <div class="list-item-content">
+          <div
+            ng-click="ctrl.setCurrentDestination(gplace.geometry.location.lat(), gplace.geometry.location.lng())"
+            class="item-title"
+          >
+            <p>{{gplace.name}}</p>
+            <span class="address">{{gplace.formatted_address}}</span>
+          </div>
+          <i
+            class="fas fa-plus"
+            ng-click="ctrl.editAddForm = $index"
+            ng-if="ctrl.currentUser"
+          ></i>
+        </div>
+        <div ng-if="ctrl.currentUser">
+          <hr ng-if="$index === ctrl.editAddForm">
+          <form
+            ng-if="$index === ctrl.editAddForm"
+            ng-submit="ctrl.addPlace(gplace)"
+            class="item-form"
+          >
+            <label>Name:</label>
+            <input type="text" ng-model="ctrl.newName">
+            <input type="submit" value="Add" class="btn green">
+          </form>
+        </div>
+      </div>
   </div>
 </div>
 <iframe
-    src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A
-    &origin=Oslo+Norway&destination=Telemark+Norway&avoid=tolls|highways" allowfullscreen>
+    ng-src="{{ ctrl.getMapURL() }}" allowfullscreen>
 </iframe>
