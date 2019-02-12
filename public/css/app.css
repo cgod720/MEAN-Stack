@@ -241,3 +241,21 @@ hr {
   color: green;
   cursor: pointer;
 }
+
+
+
+@media(max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+  .column-left {
+    width: 100%;
+    flex: 1;
+  }
+
+  iframe {
+    flex: none;
+    height: 40vh;
+    min-height: 150px;
+  }
+}
