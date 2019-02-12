@@ -6,9 +6,9 @@ const Places = require('../models/places.js');
 
 //create route
 router.post('/', (req, res) => {
+  console.log(req.body);
   Places.create(req.body, (err, createdPlace) => {
     res.json(createdPlace);
-
   });
 });
 //get route

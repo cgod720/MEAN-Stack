@@ -155,7 +155,6 @@ form > * {
 
 
 
-
 iframe {
   position: fixed;
   border: none;
@@ -172,5 +171,5 @@ iframe {
   border: none;
   position: fixed;
   right: 3;
-  margin-left: -10px;
+
 }

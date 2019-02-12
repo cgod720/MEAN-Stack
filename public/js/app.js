@@ -8,7 +8,8 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
   this.signUpForm = {};
   this.errorMessage = '';
   this.googlePlaces = [];
-  this.editIndexForm = 1;
+  this.editIndexForm = 0;
+  this.editAddForm = 0;
 
   this.changeInclude = (path) => {
     // clear errorMessage whenever navigating to a different page
@@ -244,6 +245,32 @@ this.updatePlace = (place) => {
   }, function(err) {
     console.log(err);
   })
+}
+
+this.addPlace = (data) => {
+const newLat = data["geometry"].location.lat();
+const newLng = data["geometry"].location.lng();
+
+// console.log(data["geometry"].location.lat());
+// console.log(data["geometry"].location.lng());
+// console.log(this.currentUser._id);
+  $http({
+    method: 'POST',
+    url: '/places',
+      data: {
+        name: this.newName,
+        location: {
+          lat: newLat,
+          lng: newLng
+        },
+        createdBy: this.currentUser._id
+      }
+  }).then(function(response) {
+    console.log(response);
+    controller.getPlaces();
+  }, function(err) {
+    console.log(err);
+  });
 }
 
   this.getUserLocation();
