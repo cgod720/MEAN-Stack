@@ -35,6 +35,7 @@ nav {
   align-items: center;
   padding: 5px 15px;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  z-index: 1;
 }
 
 nav .btn:first-of-type {
@@ -156,20 +157,10 @@ form > * {
 
 
 iframe {
-  position: fixed;
+  flex: 1;
   border: none;
-  top: 0;
-  bottom: 0;
-  left: 2;
-  right: 0;
-  width: 80%;
-  height: 100%;
-  z-index: -1;
 }
 .column-left {
-  width: 20%;
-  border: none;
-  position: fixed;
-  right: 3;
+  width: 300px;
 
 }
