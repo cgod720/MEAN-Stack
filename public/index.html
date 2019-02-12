@@ -19,6 +19,13 @@
       </span>
 
       <!-- if user is logged in -->
+
+      <!--Welcome, User -->
+      <div ng-if="ctrl.currentUser">
+        <h1 class="capitalize"> Welcome, {{ctrl.currentUser.username = ctrl.currentUser.username}}</h1>
+
+      </div>
+      
       <button
         ng-if="ctrl.currentUser"
         ng-click="ctrl.logOut()"
@@ -26,11 +33,7 @@
       >
         Log Out
       </button>
-      <!--Welcome, User -->
-      <div ng-if="ctrl.currentUser">
-        <h1 class="capitalize"> Welcome, {{ctrl.currentUser.username = ctrl.currentUser.username}}</h1>
 
-      </div>
       <!-- if user is logged out -->
       <button
         ng-if="ctrl.currentUser === false"

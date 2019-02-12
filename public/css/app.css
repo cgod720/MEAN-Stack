@@ -266,4 +266,5 @@ hr {
 
 .capitalize {
   text-transform: capitalize;
+  margin-right: 20px;
 }
