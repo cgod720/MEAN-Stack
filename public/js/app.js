@@ -125,12 +125,12 @@ app.controller('MainController', ['$http', '$sce', '$scope', function($http, $sc
       // Make request to find user's location based on their public IP
       $http({
         method: 'GET',
-        url: `http://ip-api.com/json/${json.data.ip}`
+        url: `https://ipapi.co/${json.data.ip}/json`
       }).then((response) => {
         // save lat and lon in currentLocation object
         this.currentLocation = {
-          lat: response.data.lat,
-          lon: response.data.lon
+          lat: response.data.latitude,
+          lon: response.data.longitude
         }
       })
     })
