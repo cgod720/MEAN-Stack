@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="TheApp">
   <head>
+    <link rel="shortcut icon" href="#">
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Routr</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A&libraries=places"></script>
+    <link rel="icon" href="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/map-signs-512.png">
     <script src="/js/app.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body ng-controller="MainController as ctrl">
     <nav>
-      <span>Routr</span>
+      <span class="brand" ng-click="ctrl.goToLanding()">
+        Routr
+      </span>
 
       <!-- if user is logged in -->
       <button
         ng-if="ctrl.currentUser"
         ng-click="ctrl.logOut()"
+        class="btn black"
       >
         Log Out
       </button>
@@ -27,17 +35,23 @@
       <button
         ng-if="ctrl.currentUser === false"
         ng-click="ctrl.changeInclude('login')"
+        class="btn black"
       >
         Log In
       </button>
       <button
         ng-if="ctrl.currentUser === false"
         ng-click="ctrl.changeInclude('signup')"
+        class="btn blue"
       >
         Sign Up
       </button>
     </nav>
 
-    <div ng-include="ctrl.includePath"></div>
+    <div
+      class="container"
+      ng-include="ctrl.includePath"
+    >
+    </div>
   </body>
 </html>

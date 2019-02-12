@@ -18,12 +18,13 @@ router.post('/', (req, res) => {
 
       // convert username to lower case
       req.body.username = req.body.username.toLowerCase();
-      
+
       // encrypt password provided in sign up form
       req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
 
       // create new user
       User.create(req.body, (err, createdUser) => {
+          req.session.currentUser = createdUser;
         // send created user back to client
         res.status(201).json(createdUser);
       });
