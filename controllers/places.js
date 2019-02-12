@@ -15,12 +15,12 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   Places.find({}, (err, foundPlace) => {
     res.json(foundPlace);
-  
+
   });
 });
 //update route
 router.put('/:id', (req, res) => {
-  Places.findByIdAndUpdate(req.params.id, req.body, (err, updatedPlace) => {
+  Places.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPlace) => {
     res.json(updatedPlace);
   });
 });

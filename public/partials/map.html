@@ -1,11 +1,16 @@
 <div class="container">
   <div class="column-left">
 
-
+    <div ng-controller="PlacesController as place" class="center">
+      <div ng-submit="place.createPlace()">
+        <input type="text" ng-model="place.name" placeholder="Destination">
+        <input type="submit" value="Go">
+      </div>
+    </div>
 
   </div>
 </div>
 <iframe
     src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCqDaNbp7xk07SRPEDtRTZKAMePvafg47A
-    &origin=Oslo+Norway&destination=Telemark+Norway&avoid=tolls|highways" allowfullscreen>
+    &origin=Cali+Colombia&destination=Medellin+Colombia&avoid=tolls|highways" allowfullscreen>
 </iframe>

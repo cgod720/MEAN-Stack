@@ -144,6 +144,11 @@ app.controller('PlacesController', ['$http', function($http) {
         createdBy: this.createdBy
       }
   }).then(function(response) {
+      console.log(response.data);
+      this.name = place.name
+      this.location = place.pullLocation;
+      this.createdBy = this.currentUser;
+      console.log(this.name, this.currentUser);
     console.log(response);
   }, function(error) {
     console.log(err);
@@ -165,4 +170,20 @@ app.controller('PlacesController', ['$http', function($http) {
      console.log(err);
    });
  }
+
+ this.getDestination = () => {
+   $http({
+     method: "GET",
+     url: "",
+     data: {
+       name: this.name,
+       location: this.location
+     }
+   }).then((response) => {
+        console.log(response);
+   }, (err) => {
+        console.log(err);
+   })
+ }
+
 }]);

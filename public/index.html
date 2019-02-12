@@ -18,7 +18,11 @@
       >
         Log Out
       </button>
+      <!--Welcome, User -->
+      <div ng-if="ctrl.currentUser">
+        <h1> Welcome, {{ctrl.currentUser.username = ctrl.currentUser.username}}</h1>
 
+      </div>
       <!-- if user is logged out -->
       <button
         ng-if="ctrl.currentUser === false"

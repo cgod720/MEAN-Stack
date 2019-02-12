@@ -31,3 +31,7 @@ iframe {
   right: 3;
   margin-left: -10px;
 }
+
+.center {
+  text-align: center;
+}
