@@ -13,7 +13,7 @@
   <li><a href="https://expressjs.com">Express</a></li>
   <li><a href="https://angularjs.org">Angular</a></li>
   <li>Maps Embed API</li>
-
+</ul>
 <h2>Approach</h2>
 <hr>
 <p>During initial setup the team took advantage of Trello to manage task creations, member assignment and track current status. Both handwritten and digital Adobe based wireframes were designed as shown below... </p>
