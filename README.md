@@ -17,7 +17,7 @@
 <h2>Approach</h2>
 <hr>
 <p>During initial setup the team took advantage of Trello to manage task creations, member assignment and track current status. Preliminary handwritten and digital Adobe based wireframes used in designing the site: </p>
-<img width="300" src="https://i.imgur.com/FjQ8Yd7.png" display="flex"> <img width="300" src="https://i.imgur.com/s4G3bh2.png">
+<img width="300" src="https://i.imgur.com/FjQ8Yd7.png" ALIGN="right"> <img width="300" src="https://i.imgur.com/s4G3bh2.png">
 
 <h2>Site Information</h2>
 <hr>
