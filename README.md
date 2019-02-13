@@ -1,4 +1,4 @@
-[logo]: https://cdn2.iconfinder.com/data/icons/font-awesome/1792/map-signs-512.png # "Routr"
+[logo]: https://cdn2.iconfinder.com/data/icons/font-awesome/1792/map-signs-512.png
 -----
 
 Routr utilizes the Google Maps Embed API for obtaining current location as well as subsequent data calls. The main purpose is to route the specified destination for the end user with the added functionality of being able save to a favorites list upon login. Routr allows the user to search nearby destinations and their favorites list simultaneously.
