@@ -12,7 +12,7 @@
   <li><a href="https://www.mongodb.com">MongoDB</a></li>
   <li><a href="https://expressjs.com">Express</a></li>
   <li><a href="https://angularjs.org">Angular</a></li>
-  <li>Maps Embed API</li>
+ <li><a href="https://developers.google.com/maps/documentation/embed/guide">Maps Embed API</a></li>
 </ul>
 <h2>Approach</h2>
 <hr>
